@@ -11,10 +11,12 @@ const josefin = Josefin_Sans({
 });
 
 export const metadata = {
-  title: "YourBrand - Wholesale & Distribution",
+  title: "Waddai - Wholesale & Distribution",
   description: "Your business description here",
+  icons: {
+    icon: "/favicon.ico.ico",
+  },
 };
-
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
