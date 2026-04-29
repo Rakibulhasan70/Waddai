@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Menu, X, Phone } from "lucide-react";
+import { Menu, X } from "lucide-react";
 
 const navLinks = [
   { label: "Home", href: "/" },
@@ -25,82 +25,58 @@ export default function Navbar() {
   }, []);
 
   return (
-    <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        scrolled ? "bg-white shadow-md py-3" : "bg-transparent py-5"
-      }`}
-    >
-      {/* Top bar */}
-      <div className="bg-black text-white text-sm py-2 px-4 flex justify-center gap-2 items-center">
-        <Phone size={14} />
-        <a href="tel:+13053397978" className="hover:underline">
-          +1 4453064081
-        </a>
-      </div>
+    <>
+      <header className={`fixed top-0 left-0 right-0 z-50 bg-white transition-all duration-300 ${scrolled ? "shadow-sm" : "border-b border-gray-100"}`}>
+        <div className="max-w-7xl mx-auto px-6 h-18 py-3 flex items-center justify-between">
 
-      <div className="max-w-7xl mx-auto px-4 flex items-center justify-between mt-2">
-        {/* Logo */}
-       <Link href="/">
-    <img src="/waddai-logo.png" alt="Waddai" className="h-10 w-auto" />
-</Link>
-
-        {/* Desktop Nav */}
-        <nav className="hidden md:flex items-center gap-8">
-          {navLinks.map((link) => (
-            <Link
-              key={link.href}
-              href={link.href}
-              className={`text-sm font-medium transition-colors hover:text-black ${
-                pathname === link.href
-                  ? "text-black border-b-2 border-black"
-                  : "text-gray-600"
-              }`}
-            >
-              {link.label}
-            </Link>
-          ))}
-          <Link
-            href="/contact"
-            className="bg-black text-white px-5 py-2 text-sm font-medium rounded hover:bg-gray-800 transition"
+          {/* Left - Hamburger */}
+          <button
+            onClick={() => setIsOpen(!isOpen)}
+            aria-label="Toggle menu"
+            className="flex flex-col gap-1.5 p-2 group"
           >
-            Book a Call
+            <span className={`block h-0.5 bg-gray-800 transition-all duration-300 ${isOpen ? "w-6 rotate-45 translate-y-2" : "w-6"}`} />
+            <span className={`block h-0.5 bg-gray-800 transition-all duration-300 ${isOpen ? "opacity-0 w-0" : "w-4"}`} />
+            <span className={`block h-0.5 bg-gray-800 transition-all duration-300 ${isOpen ? "w-6 -rotate-45 -translate-y-2" : "w-6"}`} />
+          </button>
+
+          {/* Center - Logo + Name */}
+          <Link href="/" className="absolute left-1/2 -translate-x-1/2 flex items-center gap-3">
+            <img src="/waddai-logo.png" alt="Waddai" className="h-12 w-auto" />
+            <span className="text-xl font-bold tracking-tight text-gray-900">WADDAI</span>
           </Link>
-        </nav>
 
-        {/* Mobile Toggle */}
-        <button
-          className="md:hidden"
-          onClick={() => setIsOpen(!isOpen)}
-          aria-label="Toggle menu"
-        >
-          {isOpen ? <X size={24} /> : <Menu size={24} />}
-        </button>
-      </div>
+          {/* Right - empty balance */}
+          <div className="w-10" />
+        </div>
+      </header>
 
-      {/* Mobile Menu */}
-      {isOpen && (
-        <div className="md:hidden bg-white shadow-lg px-6 py-6 flex flex-col gap-4">
-          {navLinks.map((link) => (
+      {/* Full-width Slide-down Menu */}
+      <div className={`fixed top-[72px] left-0 right-0 z-40 bg-white border-b border-gray-100 shadow-lg transition-all duration-300 overflow-hidden ${isOpen ? "max-h-96 opacity-100" : "max-h-0 opacity-0"}`}>
+        <div className="max-w-7xl mx-auto px-6 py-8 flex flex-col gap-1">
+          {navLinks.map((link, i) => (
             <Link
               key={link.href}
               href={link.href}
               onClick={() => setIsOpen(false)}
-              className={`text-sm font-medium transition-colors hover:text-black ${
-                pathname === link.href ? "text-black font-bold" : "text-gray-600"
+              className={`text-2xl font-light py-3 border-b border-gray-50 hover:pl-4 transition-all duration-200 ${
+                pathname === link.href ? "text-black font-semibold pl-4" : "text-gray-400 hover:text-black"
               }`}
+              style={{ transitionDelay: `${i * 40}ms` }}
             >
               {link.label}
             </Link>
           ))}
-          <Link
-            href="/contact"
-            onClick={() => setIsOpen(false)}
-            className="bg-black text-white px-5 py-2 text-sm font-medium rounded text-center hover:bg-gray-800 transition"
-          >
-            Book a Call
-          </Link>
         </div>
+      </div>
+
+      {/* Overlay */}
+      {isOpen && (
+        <div
+          className="fixed inset-0 z-30 bg-black/10"
+          onClick={() => setIsOpen(false)}
+        />
       )}
-    </header>
+    </>
   );
 }

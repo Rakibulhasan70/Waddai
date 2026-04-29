@@ -1,95 +1,82 @@
 import Link from "next/link";
-import { Phone, Mail, MapPin } from "lucide-react";
-
-const quickLinks = [
-  { label: "Home", href: "/" },
-  { label: "About", href: "/about" },
-  { label: "Benefits", href: "/benefits" },
-  { label: "Blogs", href: "/blogs" },
-  { label: "Contact Us", href: "/contact" },
-];
-
-const legalLinks = [
-  { label: "Privacy Policy", href: "/privacy" },
-  { label: "Terms and Conditions", href: "/terms" },
-];
 
 export default function Footer() {
   return (
-    <footer className="bg-black text-white pt-16 pb-8">
-      <div className="max-w-7xl mx-auto px-4 grid grid-cols-1 md:grid-cols-4 gap-10">
+    <footer className="bg-white border-t border-gray-100">
 
-        {/* Brand Column */}
-        <div className="col-span-1 md:col-span-2">
-        <img src="/waddai-logo.png" alt="Waddai" className="h-10 w-auto" />
-          <p className="text-gray-400 text-sm leading-relaxed mb-6">
-            Your company description goes here. We are a trusted wholesale
-            distributor committed to helping businesses grow.
+      {/* Logo Top Center */}
+      <div className="flex justify-center pt-16 pb-10">
+        <Link className="flex items-center gap-3" href="/">
+           <img src="/waddai-logo.png" alt="Waddai" className="h-12 w-auto" />
+            <span className="text-xl font-bold tracking-tight text-gray-900">WADDAI</span>
+        </Link>
+      </div>
+
+      {/* 3 Columns */}
+      <div className="max-w-7xl mx-auto px-6 pb-16 grid grid-cols-1 md:grid-cols-3 gap-10 text-center">
+
+        {/* Call Us */}
+        <div>
+          <h3 className="text-xs font-bold tracking-[0.3em] uppercase text-gray-800 mb-4">
+            Call Us
+          </h3>
+          <p className="text-gray-500 text-sm">+1 000 000 0000</p>
+        </div>
+
+        {/* Address */}
+        <div>
+          <h3 className="text-xs font-bold tracking-[0.3em] uppercase text-gray-800 mb-4">
+            Address
+          </h3>
+          <p className="text-gray-500 text-sm leading-relaxed">
+            Your Street, City,<br />State ZIP
           </p>
-          <div className="flex flex-col gap-3 text-sm text-gray-400">
-            <div className="flex items-start gap-2">
-              <MapPin size={16} className="mt-0.5 text-white shrink-0" />
-              <span>Your Address Here, City, State, ZIP</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <Phone size={16} className="text-white shrink-0" />
-              <a href="tel:+10000000000" className="hover:text-white transition">
-                +1 000.000.0000
-              </a>
-            </div>
-            <div className="flex items-center gap-2">
-              <Mail size={16} className="text-white shrink-0" />
-              <a href="mailto:your@email.com" className="hover:text-white transition">
-                your@email.com
-              </a>
-            </div>
-          </div>
         </div>
 
-        {/* Quick Links */}
-        <div>
-          <h3 className="text-sm font-semibold uppercase tracking-widest mb-4 text-gray-300">
-            Quick Links
-          </h3>
-          <ul className="flex flex-col gap-2">
-            {quickLinks.map((link) => (
-              <li key={link.href}>
-                <Link
-                  href={link.href}
-                  className="text-sm text-gray-400 hover:text-white transition"
-                >
-                  {link.label}
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </div>
+        {/* Email */}
+      <div>
+  <h3 className="text-xs font-bold tracking-[0.3em] uppercase text-gray-800 mb-4">
+    E-Mail
+  </h3>
 
-        {/* Legal Links */}
-        <div>
-          <h3 className="text-sm font-semibold uppercase tracking-widest mb-4 text-gray-300">
-            Legal
-          </h3>
-          <ul className="flex flex-col gap-2">
-            {legalLinks.map((link) => (
-              <li key={link.href}>
-                <Link
-                  href={link.href}
-                  className="text-sm text-gray-400 hover:text-white transition"
-                >
-                  {link.label}
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </div>
+  <a
+    href="mailto:your@email.com"
+    className="text-sm hover:text-black transition"
+    style={{ color: "#c8a882" }}
+  >
+    your@email.com
+  </a>
+</div>
       </div>
 
       {/* Bottom Bar */}
-      <div className="max-w-7xl mx-auto px-4 mt-12 pt-6 border-t border-gray-800 flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-gray-500">
-       <img src="/waddai-logo.png" alt="Waddai" className="h-10 w-auto" />
-        <p>Wholesale & Distribution</p>
+      <div className="border-t border-gray-100 py-6 px-6">
+        <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
+
+          {/* Copyright */}
+          <p className="text-xs text-gray-400">
+            Copyright © <span className="font-semibold text-gray-600">Waddai</span>. All rights reserved.
+          </p>
+
+          {/* Nav Links */}
+          <div className="flex items-center gap-6">
+            {[
+              { label: "About", href: "/about" },
+              { label: "Blogs", href: "/blogs" },
+              { label: "Contact", href: "/contact" },
+            ].map((link) => (
+              <Link
+                key={link.href}
+                href={link.href}
+                className="text-xs text-gray-400 hover:text-black transition"
+              >
+                {link.label}
+              </Link>
+            ))}
+          </div>
+        </div>
       </div>
+
     </footer>
   );
 }
