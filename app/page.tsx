@@ -67,7 +67,7 @@ const features = [
 
 export default function HomePage() {
   const [current, setCurrent] = useState(0);
-  const [hoveredProduct, setHoveredProduct] = useState(null);
+ const [hoveredProduct, setHoveredProduct] = useState<number | null>(null);
 
   useEffect(() => {
     const timer = setInterval(() => {
