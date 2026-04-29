@@ -34,7 +34,7 @@ export default function Navbar() {
       <div className="bg-black text-white text-sm py-2 px-4 flex justify-center gap-2 items-center">
         <Phone size={14} />
         <a href="tel:+13053397978" className="hover:underline">
-          +1 305.339.7978
+          +1 4453064081
         </a>
       </div>
 

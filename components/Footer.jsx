@@ -21,7 +21,7 @@ export default function Footer() {
 
         {/* Brand Column */}
         <div className="col-span-1 md:col-span-2">
-          <h2 className="text-2xl font-bold mb-4">YourBrand</h2>
+        <img src="/waddai-logo.png" alt="Waddai" className="h-10 w-auto" />
           <p className="text-gray-400 text-sm leading-relaxed mb-6">
             Your company description goes here. We are a trusted wholesale
             distributor committed to helping businesses grow.
@@ -87,7 +87,7 @@ export default function Footer() {
 
       {/* Bottom Bar */}
       <div className="max-w-7xl mx-auto px-4 mt-12 pt-6 border-t border-gray-800 flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-gray-500">
-        <p>© {new Date().getFullYear()} YourBrand. All Rights Reserved.</p>
+       <img src="/waddai-logo.png" alt="Waddai" className="h-10 w-auto" />
         <p>Wholesale & Distribution</p>
       </div>
     </footer>
