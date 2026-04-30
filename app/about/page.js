@@ -1,132 +1,181 @@
-import Link from "next/link";
-import { CheckCircle, ArrowRight } from "lucide-react";
+"use client";
 
-const values = [
-  "Trusted B2B wholesale distributor since 2004",
-  "BBB Accredited with A+ rating",
-  "10+ years of ecommerce management experience",
-  "Amazon SPN certified partner",
-  "Open warehouse for in-person visits",
-  "Strong supplier relationships across the U.S.",
+import Link from "next/link";
+import { ArrowRight, Clock, Truck, CreditCard } from "lucide-react";
+
+// ── DATA ─────────────────────────────────────────────────────────────────────
+
+const stats = [
+  { value: "12+", label: "Years Experience" },
+  { value: "8K+", label: "Happy Customers" },
+  { value: "200+", label: "Products" },
+  { value: "50+", label: "Countries Served" },
 ];
+
+const team = [
+  { name: "James Carter", role: "Founder & CEO",    bg: "#f0ede8", accent: "#c8a882" },
+  { name: "Sophia Lin",   role: "Head of Design",   bg: "#e8ece8", accent: "#7a9e7e" },
+  { name: "Marcus Reid",  role: "Operations Lead",  bg: "#e8eaec", accent: "#6b7fa3" },
+];
+
+const features = [
+  { icon: <Clock size={28} />,       title: "90 Days Return",  desc: "If goods have problems, we'll handle it." },
+  { icon: <Truck size={28} />,       title: "Free Delivery",   desc: "For all orders over $50, free shipping."  },
+  { icon: <CreditCard size={28} />,  title: "Secure Payment",  desc: "100% secure payment guaranteed."          },
+];
+
+// ── PAGE ─────────────────────────────────────────────────────────────────────
 
 export default function AboutPage() {
   return (
-    <div className="w-full">
+    <div className="w-full bg-white">
 
-      {/* ── PAGE HERO ── */}
-      <section className="bg-black text-white py-24 text-center">
-        <div className="max-w-3xl mx-auto px-4">
-          <h1 className="text-5xl font-bold mb-4">About Us</h1>
-          <p className="text-gray-400 text-lg">
-            Learn who we are, what we do, and why businesses trust us.
-          </p>
-        </div>
-      </section>
+      {/* ── HERO — same layout as home slider ── */}
+      <section
+        className="relative h-[85vh] overflow-hidden flex items-center"
+        style={{ backgroundColor: "#f0ede8" }}
+      >
+        <div className="max-w-7xl mx-auto px-8 w-full flex items-center justify-between">
 
-      {/* ── WELCOME SECTION ── */}
-      <section className="py-24 bg-white">
-        <div className="max-w-7xl mx-auto px-4 grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
-          <div>
-            <h2 className="text-4xl font-bold mb-6">
-              Welcome to <span className="underline">YourBrand</span>
-            </h2>
-            <p className="text-gray-500 leading-relaxed mb-6">
-              Located in the heart of your city, YourBrand stands at the
-              forefront of the wholesale distribution and service provider
-              industry. Our mission is to empower both small and large volume
-              sellers by providing them with top-selling wholesale products.
-            </p>
-            <p className="text-gray-500 leading-relaxed mb-8">
-              We are committed to building long-term partnerships based on
-              trust, transparency, and results. Every client we work with
-              becomes a part of our growing network of successful businesses.
+          {/* Left text */}
+          <div className="max-w-xl">
+            <span
+              className="text-xs font-semibold tracking-[0.3em] uppercase mb-6 block"
+              style={{ color: "#c8a882" }}
+            >
+              WHO WE ARE
+            </span>
+            <h1 className="text-6xl md:text-8xl font-bold text-gray-900 leading-tight mb-6 whitespace-pre-line">
+              {"About\nWaddai"}
+            </h1>
+            <p className="text-gray-500 text-lg mb-10">
+              A wholesale furniture brand built on craftsmanship, quality, and a love for great design.
             </p>
             <Link
               href="/contact"
-              className="inline-flex items-center gap-2 bg-black text-white px-8 py-4 rounded hover:bg-gray-800 transition font-medium"
+              className="inline-flex items-center gap-3 bg-gray-900 text-white px-8 py-4 text-sm font-medium tracking-widest uppercase hover:bg-gray-700 transition"
             >
-              Connect With Us <ArrowRight size={18} />
+              Get In Touch <ArrowRight size={16} />
             </Link>
           </div>
 
-          {/* Stats Box */}
-          <div className="grid grid-cols-2 gap-6">
-            {[
-              { number: "2004", label: "Founded" },
-              { number: "10+", label: "Years Experience" },
-              { number: "500+", label: "Clients Served" },
-              { number: "A+", label: "BBB Rating" },
-            ].map((stat, i) => (
+          {/* Decorative circle — identical to home hero */}
+          <div
+            className="hidden md:flex w-80 h-80 rounded-full items-center justify-center"
+            style={{ backgroundColor: "#c8a88220" }}
+          >
+            <div
+              className="w-48 h-48 rounded-full flex items-center justify-center"
+              style={{ backgroundColor: "#c8a88240" }}
+            >
+              <div className="w-20 h-20 rounded-full" style={{ backgroundColor: "#c8a882" }} />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ── STATS ── */}
+      <section className="py-16 border-b border-gray-100">
+        <div className="max-w-7xl mx-auto px-4 grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+          {stats.map((stat, i) => (
+            <div key={i}>
+              <div className="text-5xl font-bold text-gray-900 mb-2">{stat.value}</div>
+              <div className="text-sm text-gray-400 tracking-widest uppercase">{stat.label}</div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* ── OUR STORY ── */}
+      <section className="py-20">
+        <div className="max-w-7xl mx-auto px-4 grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
+
+          {/* Decorative circle — green accent */}
+          <div className="flex items-center justify-center">
+            <div
+              className="w-80 h-80 rounded-full flex items-center justify-center"
+              style={{ backgroundColor: "#7a9e7e20" }}
+            >
+              <div
+                className="w-48 h-48 rounded-full flex items-center justify-center"
+                style={{ backgroundColor: "#7a9e7e40" }}
+              >
+                <div className="w-20 h-20 rounded-full" style={{ backgroundColor: "#7a9e7e" }} />
+              </div>
+            </div>
+          </div>
+
+          {/* Text */}
+          <div>
+            <span
+              className="text-xs font-semibold tracking-[0.3em] uppercase mb-4 block"
+              style={{ color: "#7a9e7e" }}
+            >
+              OUR STORY
+            </span>
+            <h2 className="text-4xl font-bold text-gray-900 mb-6 leading-tight">
+              Furniture Made<br />With Purpose
+            </h2>
+            <p className="text-gray-500 text-sm leading-relaxed mb-4">
+              Waddai started with a simple idea — beautiful, functional furniture should be accessible
+              to everyone. Founded over a decade ago, we've grown from a small workshop into a global
+              wholesale brand trusted by retailers worldwide.
+            </p>
+            <p className="text-gray-500 text-sm leading-relaxed mb-8">
+              Every collection reflects our commitment to timeless design, sustainable sourcing,
+              and uncompromising quality. We work closely with skilled craftsmen to bring each piece to life.
+            </p>
+            <Link
+              href="/benefits"
+              className="inline-flex items-center gap-3 bg-gray-900 text-white px-8 py-4 text-sm font-medium tracking-widest uppercase hover:bg-gray-700 transition"
+            >
+              Our Benefits <ArrowRight size={16} />
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* ── TEAM — same card pattern as category cards ── */}
+      <section className="py-16">
+        <div className="max-w-7xl mx-auto px-4">
+          <div className="text-center mb-12">
+            <h2 className="text-4xl font-bold text-gray-900 mb-3">Meet The Team</h2>
+            <p className="text-gray-400 text-sm">The people behind every great piece.</p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            {team.map((member, i) => (
               <div
                 key={i}
-                className="bg-gray-50 border border-gray-100 rounded-xl p-8 text-center hover:shadow-md transition"
+                className="rounded-lg p-10 flex flex-col items-center text-center"
+                style={{ backgroundColor: member.bg }}
               >
-                <div className="text-4xl font-bold mb-2">{stat.number}</div>
-                <div className="text-gray-500 text-sm">{stat.label}</div>
+                <div
+                  className="w-24 h-24 rounded-full flex items-center justify-center mb-6"
+                  style={{ backgroundColor: member.accent + "40" }}
+                >
+                  <div className="w-10 h-10 rounded-full" style={{ backgroundColor: member.accent }} />
+                </div>
+                <h3 className="text-xl font-bold text-gray-900 mb-1">{member.name}</h3>
+                <p className="text-sm text-gray-500">{member.role}</p>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* ── OUR STORY ── */}
-      <section className="py-24 bg-gray-50">
-        <div className="max-w-4xl mx-auto px-4 text-center">
-          <h2 className="text-4xl font-bold mb-6">Our Story</h2>
-          <p className="text-gray-500 leading-relaxed text-lg mb-6">
-            Our journey began in 2004 with a passion for product sourcing and
-            distribution. Over the years, we built strong supplier relationships
-            and gained hands-on experience in various retail models.
-          </p>
-          <p className="text-gray-500 leading-relaxed text-lg">
-            We fully transitioned into wholesale distribution, establishing
-            YourBrand as a trusted B2B provider for businesses across the
-            country. Today, we continue to grow and serve businesses of all
-            sizes with the same passion and dedication.
-          </p>
-        </div>
-      </section>
-
-      {/* ── VALUE PROPOSITION ── */}
-      <section className="py-24 bg-white">
-        <div className="max-w-7xl mx-auto px-4 grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
-          <div className="bg-black text-white rounded-2xl p-12">
-            <h2 className="text-3xl font-bold mb-4">Our Value Proposition</h2>
-            <p className="text-gray-400 leading-relaxed">
-              As a BBB-accredited business, we provide trusted wholesale account
-              support tailored to your needs. Our commitment to professionalism
-              and integrity ensures reliable service and long-term partnerships
-              you can count on.
-            </p>
-          </div>
-          <div>
-            <h3 className="text-2xl font-bold mb-8">What We Stand For</h3>
-            <ul className="flex flex-col gap-4">
-              {values.map((val, i) => (
-                <li key={i} className="flex items-start gap-3">
-                  <CheckCircle size={20} className="text-black mt-0.5 shrink-0" />
-                  <span className="text-gray-600 text-sm">{val}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
-        </div>
-      </section>
-
-      {/* ── CTA ── */}
-      <section className="py-24 bg-black text-white text-center">
-        <div className="max-w-3xl mx-auto px-4">
-          <h2 className="text-4xl font-bold mb-4">Ready to Work With Us?</h2>
-          <p className="text-gray-400 mb-10">
-            Let's build a successful business partnership together.
-          </p>
-          <Link
-            href="/contact"
-            className="inline-flex items-center gap-2 bg-white text-black px-8 py-4 rounded font-semibold hover:bg-gray-100 transition"
-          >
-            Book a Call <ArrowRight size={18} />
-          </Link>
+      {/* ── FEATURES — identical to home ── */}
+      <section className="py-14 bg-gray-50">
+        <div className="max-w-7xl mx-auto px-4 grid grid-cols-1 md:grid-cols-3 gap-10">
+          {features.map((feature, i) => (
+            <div key={i} className="flex items-start gap-5">
+              <div className="text-gray-400 mt-1 shrink-0">{feature.icon}</div>
+              <div>
+                <h3 className="font-bold text-gray-900 mb-1">{feature.title}</h3>
+                <p className="text-gray-400 text-sm">{feature.desc}</p>
+              </div>
+            </div>
+          ))}
         </div>
       </section>
 
